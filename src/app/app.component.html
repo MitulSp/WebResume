@@ -1,0 +1,23 @@
+<div class="main-container">
+  <app-navigation-side-panel></app-navigation-side-panel>
+  <div class="main-content">
+    <div class="change-theme-color">
+      <div class="style-switch-toggler s-icon" (click)="fnOpenThemeList()">
+        <i class="fas fa-cog fa-spin"></i>
+      </div>
+      <div class="day-night s-icon" (click)="switchTheme()">
+        <i class="fas fa-moon"></i>
+      </div>
+      <h4>Theme Colors</h4>
+      <div class="colors">
+        <span class="theme-1" (click)="setthemeStyle('theme')" title="OrangeRed"></span>
+        <span class="theme-2" (click)="setthemeStyle('theme-2')" title="Crimson"></span>
+        <span class="theme-3" (click)="setthemeStyle('theme-3')" title="ForestGreen"></span>
+        <span class="theme-4" (click)="setthemeStyle('theme-4')" title="DodgerBlue"></span>
+        <span class="theme-5" (click)="setthemeStyle('theme-5')" title="DarkOrchid"></span>
+      </div>
+    </div>
+    <!-- <app-main-container></app-main-container> -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

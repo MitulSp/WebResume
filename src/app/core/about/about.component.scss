@@ -1,0 +1,175 @@
+/* .section {
+    .container {
+        padding-top: 60px;
+        padding-bottom: 70px;
+        .section-title {
+            margin-bottom: 50px;
+            h2 {
+                font-size: 40px;
+                color: var(--text-black-900);
+                font-size: 700;
+                position: relative;
+            }
+            h2::before {
+                content: "";
+                height: 4px;
+                width: 50px;
+                background-color: var(--skin-color);
+                position: absolute;
+                top: 100%;
+                left: 0;
+            }
+            h2::after {
+                content: "";
+                height: 4px;
+                width: 25px;
+                background-color: var(--skin-color);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                margin-top: 8px;
+            }
+        }
+    }
+} */
+.about {
+    .about-content {
+        .about-text {
+            h3 {
+                font-size: 24px;
+                margin-bottom: 15px;
+                font-weight: 700;
+                color: var(--text-black-900);
+                span {
+                    color: var(--skin-color);
+                }
+            }
+            p {
+                font-size: 16px;
+                line-height: 25px;
+                color: var(--text-black-700);
+            }
+        }
+        .personal-info {
+            p {
+                font-size: 16px;
+                font-weight: 600;
+                padding: 7px 0;
+                color: var(--text-black-900);
+                border-bottom: 1px solid var(--bg-black-50);
+                span {
+                    font-weight: 400;
+                    color: var(--text-black-700);
+                    margin-left: 4px;
+                    display: inline-block;
+                }
+            }
+            .btns {
+                margin: 30px 0;
+                .btn {
+                    margin-right: 15px;
+                    margin-bottom: 15px;
+                }
+            }
+        }
+        .skill {
+            .skill-item {
+                margin-bottom: 10px;
+                h5 {
+                    color: var(--text-black-900);
+                }
+                .progress {
+                    .progress-bar {
+                        background-color: var(--skin-color);
+                    }
+                }
+            }
+        }
+        h3.title {
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            color: var(--text-black-900);
+        }
+        .edu-exp {
+            margin-top: 30px;
+            .card {
+                background-color: var(--bg-black-100);
+                border: 1px solid var(--bg-black-50);
+                .card-body {
+                    .card-item {
+                        position: relative;
+                        padding-left: 37px;
+                        padding-bottom: 20px;
+                        .round-dot {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            height: 15px;
+                            width: 15px;
+                            border-radius: 100%;
+                            background-color: var(--skin-color);
+                        }
+                        .company-date {
+                            font-size: 14px;
+                            font-weight: 400;
+                            margin-bottom: 12px;
+                            color: var(--text-black-700);
+                            .fa {
+                                margin-right: 5px;
+                            }
+                        }
+                        .company-title {
+                            font-size: 18px;
+                            font-weight: 700;
+                            margin-bottom: 15px;
+                            text-transform: capitalize;
+                            color: var(--text-black-900);
+                        }
+                        .company-info {
+                            line-height: 25px;
+                            font-size: 16px;
+                            text-align: justify;
+                            color: var(--text-black-700);
+                        }
+                    }
+                    .card-item:last-child {
+                        padding-bottom: 0;
+                    }
+                    .card-item::before {
+                        content: "";
+                        width: 1px;
+                        position: absolute;
+                        height: 100%;
+                        left: 7px;
+                        top: 0;
+                        background-color: var(--skin-color);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767.98px) {
+    .about {
+        .about-content {
+            .edu-exp {
+                .card {
+                    padding: 10px !important;
+                    .card-body {
+                        padding: 10px 10px;
+                        .card-item {
+                            padding-left: 25px;
+                            padding-bottom: 10px;
+                            .company-title {
+                                font-size: 16px;
+                                margin-bottom: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

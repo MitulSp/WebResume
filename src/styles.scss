@@ -1,0 +1,307 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import "assets/css/theme.scss";
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+    --background-color: #f5f5f5;
+    --text-color: #141050;
+    --box-color: #fff;
+    --button-color: #fff;
+    --box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+    --bg-black-900: #f2f2fc;
+    --bg-black-100: #fdf9ff;
+    --bg-black-50: #e8dfec;
+    --text-black-900: #302e4d;
+    --text-black-700: #504e70;
+}
+body {
+    line-height: 1.5;
+    font-size: 16px;
+    font-family: "Poppins" sans-serif !important;
+}
+body.dark {
+    --background-color: #f5f5f5;
+    --text-color: #141050;
+    --box-color: #fff;
+    --button-color: #fff;
+    --box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+    --bg-black-900: #151515;
+    --bg-black-100: #222222;
+    --bg-black-50: #393939;
+    --text-black-900: #ffffff;
+    --text-black-700: #e9e9e9;
+}
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+html::-webkit-scrollbar {
+    width: 0.7rem;
+}
+html::-webkit-scrollbar-track {
+    background: #fff;
+}
+html::-webkit-scrollbar-thumb {
+    background: var(--skin-color);
+}
+ul,
+li,
+ol {
+    margin: 0;
+    padding: 0;
+}
+::before ::after {
+    box-sizing: border-box;
+}
+ul {
+    list-style: none;
+}
+.main-container {
+    padding-left: 270px;
+}
+.section {
+    background: var(--bg-black-900);
+    min-height: 100vh;
+    display: block;
+    opacity: 1;
+    padding: 0 30px;
+}
+.pl-15 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+/* Aside Class */
+.aside {
+    width: 270px;
+    background: var(--bg-black-100);
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid var(--bg-black-50);
+    .nav-menu-toggler {
+        height: 40px;
+        width: 45px;
+        border: 1px solid var(--bg-black-50);
+        cursor: pointer;
+        position: fixed;
+        left: 300px;
+        top: 20px;
+        border-radius: 5px;
+        background: var(--bg-black-100);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        span {
+            height: 2px;
+            width: 18px;
+            background: var(--skin-color);
+            display: inline-block;
+            position: relative;
+        }
+        span::before {
+            content: "";
+            height: 2px;
+            width: 18px;
+            background: var(--skin-color);
+            position: absolute;
+            top: 6px;
+            left: 0;
+        }
+        span::after {
+            content: "";
+            height: 2px;
+            width: 18px;
+            background: var(--skin-color);
+            position: absolute;
+            top: -6px;
+            left: 0;
+        }
+    }
+    .main-log {
+        position: absolute;
+        top: 50px;
+        font-size: 30px;
+        text-transform: capitalize;
+        a {
+            text-decoration: none;
+            color: var(--text-black-900);
+            font-weight: 700;
+            padding: 15px 20px;
+            font-size: 30px;
+            letter-spacing: 5px;
+            position: relative;
+            span {
+                font-family: "Clicker Script", cursive;
+                font-size: 40px;
+            }
+        }
+        a::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-bottom: 5px solid var(--skin-color);
+            border-left: 5px solid var(--skin-color);
+            bottom: 0;
+            left: 0;
+        }
+        a::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-top: 5px solid var(--skin-color);
+            border-right: 5px solid var(--skin-color);
+            top: 0;
+            right: 0;
+        }
+    }
+    .nav-menu {
+        margin-top: 50px;
+        li {
+            margin-bottom: 20px;
+            display: block;
+            a {
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: 600;
+                display: block;
+                border-bottom: 1px solid var(--bg-black-50);
+                color: var(--text-black-900);
+                padding: 5px 15px;
+                i {
+                    margin-right: 15px;
+                }
+            }
+            a.active {
+                color: var(--skin-color);
+            }
+        }
+    }
+}
+.section {
+    .container {
+        padding-top: 60px;
+        padding-bottom: 70px;
+        .section-title {
+            margin-bottom: 50px;
+            h2 {
+                font-size: 40px;
+                color: var(--text-black-900);
+                font-size: 700;
+                position: relative;
+            }
+            h2::before {
+                content: "";
+                height: 4px;
+                width: 50px;
+                background-color: var(--skin-color);
+                position: absolute;
+                top: 100%;
+                left: 0;
+            }
+            h2::after {
+                content: "";
+                height: 4px;
+                width: 25px;
+                background-color: var(--skin-color);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                margin-top: 8px;
+            }
+        }
+    }
+}
+a.btn {
+    background: var(--skin-color);
+    color: white;
+    border-radius: 40px;
+    padding: 12px 35px;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+    white-space: nowrap;
+    transition: all 0.5s ease;
+    border: none;
+}
+.btn:hover {
+    transform: scale(1.05);
+    color: white;
+}
+
+// X-Small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+    .container {
+        max-width: 860px;
+    }
+}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
+    .aside {
+        left: -270px;
+        .nav-menu-toggler {
+            display: flex;
+            left: 30px;
+        }
+        .nav-menu-toggler.open {
+            left: 300px;
+        }
+    }
+    .aside.open {
+        left: 0;
+    }
+    .main-content,
+    .main-container {
+        padding-left: 0;
+        transition: all 0.3s ease;
+    }
+    .about {
+        .about-content {
+            .personal-info {
+                p {
+                    span {
+                        margin-left: 0;
+                        display: block;
+                    }
+                }
+                .btns {
+                    margin: 30px 0;
+                    .btn {
+                        margin-right: 15px;
+                    }
+                }
+            }
+        }
+    }
+
+    .main-content.open {
+        margin-left: 270px;
+        transition: all 0.3s ease;
+    }
+}
+
+// X-Large devices (large desktops, less than 1400px)
+@media (max-width: 1399.98px) {
+}
+
+// XX-Large devices (larger desktops)
+// No media query since the xxl breakpoint has no upper bound on its width
