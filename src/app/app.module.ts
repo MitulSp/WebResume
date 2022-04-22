@@ -10,6 +10,7 @@ import { ServicesComponent } from './core/services/services.component';
 import { PortfolioComponent } from './core/portfolio/portfolio.component';
 import { ContactComponent } from './core/contact/contact.component';
 import { FormsModule } from '@angular/forms';
+import { FloatNavigationPanelComponent } from './shared/components/float-navigation-panel/float-navigation-panel.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     AboutComponent,
     ServicesComponent,
     PortfolioComponent,
-    ContactComponent
+    ContactComponent,
+    FloatNavigationPanelComponent
   ],
   imports: [
     BrowserModule,
