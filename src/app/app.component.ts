@@ -11,6 +11,7 @@ import { filter, map, mergeMap } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit, DoCheck {
   title = 'webResume';
+  currentDateTime = new Date();
 
   constructor(@Inject(DOCUMENT) private document: Document, private router: Router, private activatedRoute: ActivatedRoute,
     private titleService: Title) {
@@ -25,6 +26,9 @@ export class AppComponent implements OnInit, DoCheck {
       mergeMap((route: any) => route.data)).subscribe((event: any) => {
         this.titleService.setTitle(event['title']);
       });
+    if (!this.isDay()) {
+      this.switchTheme()
+    }
   }
 
   ngOnInit() {
@@ -88,5 +92,19 @@ export class AppComponent implements OnInit, DoCheck {
         tempDayNight?.querySelector('i')?.classList.add('fa-moon');
       }
     })
+  }
+  formatAMPM(date: any) {
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    var strTime = hours + ':' + minutes + ' ' + ampm;
+    return strTime;
+  }
+  isDay() {
+    const hours = (new Date()).getHours();
+    return (hours >= 6 && hours < 18);
   }
 }

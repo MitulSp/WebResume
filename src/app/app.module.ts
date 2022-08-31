@@ -1,5 +1,6 @@
 import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,8 @@ import { BaseRequestService } from './services/base-request.service';
 
 import { ToastrModule } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { RightClickDisabledDirective } from './Directives/right-click-disabled.directive';
 
 export function loadBaseInfo(beasAPIURLConfig: BaseRequestService) {
   return () => beasAPIURLConfig.loadAPIConfig();
@@ -33,13 +36,27 @@ export function loadConfigurations(configService: BaseRequestService) {
     PortfolioComponent,
     ContactComponent,
     FloatNavigationPanelComponent,
+    RightClickDisabledDirective,
   ],
   imports: [
     CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
-    ToastrModule.forRoot()
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      progressBar: true,
+      closeButton: true,
+      progressAnimation: 'decreasing',
+      countDuplicates: true,
+      resetTimeoutOnDuplicate: true,
+      tapToDismiss: false,
+      enableHtml: true
+    })
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

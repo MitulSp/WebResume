@@ -1,5 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import * as $ from 'jquery';
+import { ToastrService } from 'ngx-toastr';
 import { BaseRequestService, globalConfig } from 'src/app/services/base-request.service';
 
 @Component({
@@ -23,7 +25,7 @@ export class ContactComponent implements OnInit {
   };
   spinnerSendMail = 'SendMail'
 
-  constructor(private ngZone: NgZone, private baseRequest: BaseRequestService) {
+  constructor(private ngZone: NgZone, private baseRequest: BaseRequestService, private toastrService: ToastrService) {
     this.spinnerProp.bdColor = globalConfig.data.spinnerProp.bdColor;
     this.spinnerProp.fullScreen = globalConfig.data.spinnerProp.fullScreen;
     this.spinnerProp.size = globalConfig.data.spinnerProp.size;
@@ -58,31 +60,28 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  async onSubmit() {
+  async onSubmit(form: NgForm) {
     try {
       // this.spinner.show(this.spinnerSendMail);
       const sendMail = {
         sendEmail: this.model.email,
         receiveEmail: 'me2lspatel@gmail.com',
         subject: this.model.Subject,
-        html: this.model.message,
-        name: this.model.firstName
+        html: this.model.Message,
+        name: this.model.firstName,
+        type: 0
       }
       const getAppSaveInfo: any = await this.baseRequest.fnpost('sendMail', sendMail).toPromise();
-      console.log('getAppSaveInfo', getAppSaveInfo)
-      if (getAppSaveInfo && getAppSaveInfo.statusCode === this.baseRequest.status.success) {
-        console.log('getAppSaveInfo', getAppSaveInfo)
-        // this.toastrService.success('Thank you for filling out your information!', 'Mail sent successfully');
+      if (getAppSaveInfo && getAppSaveInfo.accepted && getAppSaveInfo.accepted.length > 0) {
+        this.toastrService.success('Thank you for filling out your information!', 'Mail sent successfully');
         // this.spinner.hide(this.spinnerSendMail);
-      } else if (getAppSaveInfo.statusCode === 'E002') {
-        // this.toastrService.error(globalConfig.data.E002, 'Error');
-        // this.spinner.hide(this.spinnerSendMail);
+        form.resetForm();;
       } else {
-        // this.toastrService.error(getAppSaveInfo.message, 'Error');
+        this.toastrService.error(globalConfig.data.E002, 'Error');
         // this.spinner.hide(this.spinnerSendMail);
       }
     } catch (error) {
-      // this.toastrService.error(globalConfig.data.E002, 'Error');
+      this.toastrService.error(globalConfig.data.E002, 'Error');
       // this.spinner.hide(this.spinnerSendMail);
     }
   }

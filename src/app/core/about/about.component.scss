@@ -10,7 +10,8 @@
                     color: var(--skin-color);
                 }
             }
-            p,pre {
+            p,
+            pre {
                 font-size: 16px;
                 line-height: 25px;
                 color: var(--text-black-700);
@@ -137,5 +138,43 @@
                 }
             }
         }
+    }
+}
+.form-group {
+    .form-control {
+        background: var(--bg-black-100);
+        border: 1px solid var(--bg-black-50);
+        color: var(--text-black-700);
+        transition: all 0.3s ease;
+        margin: 10px auto;
+    }
+}
+.form-item {
+    .btn-d {
+        border-radius: 25px;
+        background: var(--skin-color);
+        border: 1px solid var(--bg-black-50);
+        color: #fff;
+        width: 100%;
+        // margin: 0 100px auto;
+        transition: all 0.3s ease;
+    }
+    .btn {
+        border-radius: 25px;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+}
+.modal {
+    .modal-content {
+        background: var(--bg-black-100);
+        border: 1px solid var(--bg-black-50);
+    }
+    .modal-header {
+        background: var(--bg-black-900);
+        border-bottom: 1px solid var(--bg-black-50);
+    }
+    .modal-title {
+        color: var(--text-black-900);
     }
 }
