@@ -113,7 +113,7 @@
             text-align: center;
             img {
                 height: 250px;
-                width: fit-content;
+                width: -webkit-fill-available;
             }
         }
 
