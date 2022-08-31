@@ -1,5 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { BaseRequestService, globalConfig } from 'src/app/services/base-request.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,12 +8,28 @@ import * as $ from 'jquery';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
+  spinnerProp: any = {
+    'bdColor': '',
+    'fullScreen': false,
+    'size': '',
+    'color': '',
+    'type': ''
+  };
   model: any = {
     firstName: null,
-    email: null
+    email: null,
+    Subject: null,
+    Message: null
   };
+  spinnerSendMail = 'SendMail'
 
-  constructor(private ngZone: NgZone) { }
+  constructor(private ngZone: NgZone, private baseRequest: BaseRequestService) {
+    this.spinnerProp.bdColor = globalConfig.data.spinnerProp.bdColor;
+    this.spinnerProp.fullScreen = globalConfig.data.spinnerProp.fullScreen;
+    this.spinnerProp.size = globalConfig.data.spinnerProp.size;
+    this.spinnerProp.color = globalConfig.data.spinnerProp.color;
+    this.spinnerProp.type = globalConfig.data.spinnerProp.type;
+  }
 
   ngOnInit(): void {
   }
@@ -42,41 +59,31 @@ export class ContactComponent implements OnInit {
   }
 
   async onSubmit() {
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.model, null, 4));
-    alert('Something went wrong')
-    /*  Email.send({
-       Host: "smtp.gmail.com",
-       Username: "xxxxx@gmail.com",
-       Password: "xxxxxxx",
-       To: 'rahulpatel3588@gmail.com',
-       From: "rahulpatel3588@gmail.com",
-       Subject: "New message on contact from " + name,
-       Body: Body
-     }).then(
-       message => {
-         //console.log (message);
-         if (message == 'OK') {
-           alert('Your mail has been send. Thank you for connecting.');
-         }
-         else {
-           console.error(message);
-           alert('There is error at sending message. ')
- 
-         }
- 
-       }
-     ); */
+    try {
+      // this.spinner.show(this.spinnerSendMail);
+      const sendMail = {
+        sendEmail: this.model.email,
+        receiveEmail: 'me2lspatel@gmail.com',
+        subject: this.model.Subject,
+        html: this.model.message,
+        name: this.model.firstName
+      }
+      const getAppSaveInfo: any = await this.baseRequest.fnpost('sendMail', sendMail).toPromise();
+      console.log('getAppSaveInfo', getAppSaveInfo)
+      if (getAppSaveInfo && getAppSaveInfo.statusCode === this.baseRequest.status.success) {
+        console.log('getAppSaveInfo', getAppSaveInfo)
+        // this.toastrService.success('Thank you for filling out your information!', 'Mail sent successfully');
+        // this.spinner.hide(this.spinnerSendMail);
+      } else if (getAppSaveInfo.statusCode === 'E002') {
+        // this.toastrService.error(globalConfig.data.E002, 'Error');
+        // this.spinner.hide(this.spinnerSendMail);
+      } else {
+        // this.toastrService.error(getAppSaveInfo.message, 'Error');
+        // this.spinner.hide(this.spinnerSendMail);
+      }
+    } catch (error) {
+      // this.toastrService.error(globalConfig.data.E002, 'Error');
+      // this.spinner.hide(this.spinnerSendMail);
+    }
   }
-  /* let name = $('#Name').val();
-  let email = $('#Sender').val();
-  let subject = $('#Subject').val();
-  let message = $('#Message').val(); */
-
-  // let body = $('#body').val();
-
-  // let Body = 'Name: ' + name + '<br>Email: ' + email + '<br>Subject: ' + subject + '<br>Message: ' + message;/*  */
-  //console.log(name, phone, email, message);
-
-  /*   */
-
 }

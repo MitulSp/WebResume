@@ -1,0 +1,5 @@
+{
+    "apiConfing": {
+        "baseURL": "https://pms-back-end.herokuapp.com/api/"
+    }
+}

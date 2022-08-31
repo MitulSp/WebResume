@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,17 @@ import { PortfolioComponent } from './core/portfolio/portfolio.component';
 import { ContactComponent } from './core/contact/contact.component';
 import { FormsModule } from '@angular/forms';
 import { FloatNavigationPanelComponent } from './shared/components/float-navigation-panel/float-navigation-panel.component';
+import { BaseRequestService } from './services/base-request.service';
+
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+
+export function loadBaseInfo(beasAPIURLConfig: BaseRequestService) {
+  return () => beasAPIURLConfig.loadAPIConfig();
+}
+export function loadConfigurations(configService: BaseRequestService) {
+  return () => configService.loadAppConfig();
+}
 
 @NgModule({
   declarations: [
@@ -21,14 +32,29 @@ import { FloatNavigationPanelComponent } from './shared/components/float-navigat
     ServicesComponent,
     PortfolioComponent,
     ContactComponent,
-    FloatNavigationPanelComponent
+    FloatNavigationPanelComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot()
   ],
-  providers: [],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      deps: [BaseRequestService],
+      useFactory: loadBaseInfo,
+    },
+    {
+      provide: APP_INITIALIZER,
+      multi: true,
+      deps: [BaseRequestService],
+      useFactory: loadConfigurations,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

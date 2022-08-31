@@ -1,0 +1,13 @@
+{
+    "spinnerProp": {
+        "bdColor": "rgba(0, 0, 0, 0.8)",
+        "fullScreen": true,
+        "isFullScreen": false,
+        "size": "medium",
+        "smallSize": "small",
+        "color": "#fff",
+        "type": "ball-scale-multiple"
+    },
+    "isValid": "All mandatory fields are not filled",
+    "E002": "The operation failed to process"
+}
